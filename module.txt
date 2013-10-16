@@ -1,5 +1,5 @@
 {
-    "id" : "malicious",
+    "id" : "Malicious",
     "version" : "0.1.0",
     "author" : "Immortius",
     "displayName" : "Malicious Exploit Security Checks",
