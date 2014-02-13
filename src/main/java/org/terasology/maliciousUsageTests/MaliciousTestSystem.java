@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.engine.paths.PathManager;
-import org.terasology.entitySystem.systems.ComponentSystem;
+import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.nio.file.Files;
  * @author Immortius
  */
 @RegisterSystem
-public class MaliciousTestSystem implements ComponentSystem {
+public class MaliciousTestSystem extends BaseComponentSystem {
 
     private static final Logger logger = LoggerFactory.getLogger(MaliciousTestSystem.class);
 
