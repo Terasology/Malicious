@@ -1,2 +1,0 @@
-println "I am a malicious Gradle script. Grr!"
-throw new GradleException("Malicious script managed to execute")
