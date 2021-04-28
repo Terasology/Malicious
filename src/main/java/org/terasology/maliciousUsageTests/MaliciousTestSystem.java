@@ -12,8 +12,10 @@ import org.terasology.engine.entitySystem.systems.RegisterSystem;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * @author Immortius
@@ -42,12 +44,17 @@ public class MaliciousTestSystem extends BaseComponentSystem {
     public void testFileWrite() {
         numTests++;
         try {
-            Files.write(FileSystems.getDefault().getPath("garbage.out"), Lists.newArrayList("Blah", "Balh"), Charset.defaultCharset());
+            FileSystem fileSystem = FileSystems.getDefault();
+            Path path = fileSystem.getPath("garbage.out");
+            Files.write(path, Lists.newArrayList("Blah", "Balh"), Charset.defaultCharset());
         } catch (IOException e) {
             logger.info("IO exception in test file write", e);
+            return;
         } catch (NoClassDefFoundError | SecurityException e) {
             passedTests++;
+            return;
         }
+        logger.warn("File.write completed without error.");
     }
 
     public void testReflectionConstruction() {
@@ -56,7 +63,9 @@ public class MaliciousTestSystem extends BaseComponentSystem {
             PathManager.getInstance();
         } catch (NoClassDefFoundError e) {
             passedTests++;
+            return;
         }
+        logger.warn("Succeeded in getting an instance.");
     }
 
 }
